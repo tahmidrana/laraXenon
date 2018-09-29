@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Menu;
+use Exception;
 
 class MenuController extends Controller
 {
@@ -42,6 +43,18 @@ class MenuController extends Controller
             return redirect('/menu')->with('success', 'Menu Saved Successfully');
         } else {
             return redirect('/menu/add_menu')->with('error', 'Menu Save Failed');
+        }
+    }
+
+    public function delete_menu($id)
+    {
+        $menu = Menu::find($id);
+
+        try{
+            $menu->delete();
+            return redirect('/menu')->with('success', 'Successfully deleted');
+        } catch (Exception $e) {
+            return redirect('/menu')->with('error', 'Delete Failed');
         }
     }
 }

@@ -22,7 +22,7 @@
             </ol>
         </div>
     </div>
-
+    @include('error.error_msg')
     <div class="panel panel-default">
         <div class="panel-heading">
             <a href="{{ url('menu/add_menu') }}" class="btn btn-turquoise">Add Menu</a>
@@ -45,7 +45,7 @@
                     <td>{{ $menu->title }}</td>
                     <td>{{ $menu->menu_url ? $menu->menu_url : 'N/A' }}</td>
                     <td>{{ $menu->parent_menu_title ? $menu->parent_menu_title : 'N/A' }}</td>
-                    <td><a href="" class="btn btn-blue btn-sm btn-icon">Edit</a> <a href="" class="btn btn-red btn-sm btn-icon">Delete</a> </td>
+                    <td><a href="{{ url('menu/update_menu/'.$menu->id) }}" class="btn btn-blue btn-sm btn-icon">Edit</a> <a href="{{ url('menu/delete_menu/'.$menu->id) }}" onclick="return confirm_menu_delete()" class="btn btn-red btn-sm btn-icon">Delete</a> </td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -65,6 +65,13 @@
                 "order": [[ 0, "desc" ]]
             });
         } );
+        function confirm_menu_delete() {
+            if(confirm('Are you sure want to delete?')) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     </script>
 @endsection
 
