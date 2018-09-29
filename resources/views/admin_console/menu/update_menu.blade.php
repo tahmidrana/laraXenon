@@ -21,7 +21,7 @@
                     <a href="{{ url('/menu') }}"><i class="fa-home"></i>Menu</a>
                 </li>
                 <li class="active">
-                    <strong>Add Menu</strong>
+                    <strong>Update Menu</strong>
                 </li>
             </ol>
         </div>
@@ -31,38 +31,38 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4>Add New Menu</h4>
+                    <h4>Update Menu</h4>
                 </div>
                 <div class="panel-body">
-                    <form action="{{ url('menu/add_menu') }}" method="POST" role="form" id="form1" class="validate">
+                    <form action="{{ url('menu/update_menu/'.$menu_data->id) }}" method="POST" role="form" id="form1" class="validate">
                         @csrf
                         <div class="form-group">
                             <label for="title">Menu Title</label>
-                            <input type="text" name="title" id="title" class="form-control" data-validate="required" placeholder="Ex: Blog Post">
+                            <input type="text" name="title" id="title" class="form-control" value="{{ $menu_data->title }}" data-validate="required" placeholder="Ex: Blog Post">
                         </div>
                         <div class="form-group">
                             <label for="menu_url">Menu URL</label>
-                            <input type="text" name="menu_url" id="menu_url" class="form-control" placeholder="Ex: post/create_post">
+                            <input type="text" name="menu_url" id="menu_url" class="form-control" value="{{ $menu_data->menu_url ? $menu_data->menu_url : '' }}" placeholder="Ex: post/create_post">
                         </div>
                         <div class="form-group">
                             <label for="parent_menu">Parent Menu</label>
                             <select name="parent_menu" id="parent_menu" class="form-control">
                                 <option value="">Select Parent Menu</option>
                                 @foreach($menu_list as $menu)
-                                    <option value="{{ $menu->id }}">{{ $menu->title }}</option>
+                                    <option value="{{ $menu->id }}" {{ $menu_data->parent_menu == $menu->id ? 'selected' : '' }}>{{ $menu->title }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="menu_url">Menu Order</label>
-                            <input type="number" name="menu_order" id="menu_order" class="form-control" data-validate="number,minlength[1]" placeholder="Ex: 1" data-validate="required">
+                            <input type="number" name="menu_order" id="menu_order" class="form-control" value="{{ $menu_data->menu_order ? $menu_data->menu_order : '' }}"  data-validate="number,minlength[1]" placeholder="Ex: 1" data-validate="required">
                         </div>
                         <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea name="description" id="description" class="form-control" cols="30" rows="2" data-validate="maxlength[150]" placeholder="Max 150 Character"></textarea>
+                            <textarea name="description" id="description" class="form-control" cols="30" rows="2" data-validate="maxlength[150]" placeholder="Max 150 Character">{{ $menu_data->description ? $menu_data->description : '' }}</textarea>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="" id="" value="Save Menu" class="btn btn-blue pull-right">
+                            <input type="submit" name="" id="" value="Update Menu" class="btn btn-blue pull-right">
                         </div>
                     </form>
                 </div>
