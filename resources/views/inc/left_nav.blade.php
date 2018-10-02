@@ -58,6 +58,11 @@
                             <span class="title">Menu</span>
                         </a>
                     </li>
+                    <li class="">
+                        <a href="{{ url('/role') }}">
+                            <span class="title">Role</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>
