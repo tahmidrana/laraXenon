@@ -23,7 +23,7 @@ class RoleController extends Controller
             'slug'=> 'required|max:100',
             'permissions'=> 'max:150'
         ]);
-        
+
         $role_data = [
             'name'=> $request->name,
             'slug'=> $request->slug,
@@ -38,6 +38,37 @@ class RoleController extends Controller
     }
 
     public function update_role($id) {
-        return "role";
+        $role = DB::table('roles')->where('id', $id)->first();
+        return view('admin_console.role.update_role', ['role'=> $role]);
+    }
+
+    public function save_updated_role(Request $request, $id)
+    {
+        $validateData = $request->validate([
+            'name'=> 'required|max:100',
+            'slug'=> 'required|max:100',
+            'permissions'=> 'max:150'
+        ]);
+
+        $role_data = [
+            'name'=> $request->name,
+            'slug'=> $request->slug,
+            'permissions'=> $request->permissions ? $request->permissions : NULL
+        ];
+
+        if(DB::table('roles')->where('id', $id)->update($role_data)) {
+            return redirect('/role')->with('success', 'Role Updated Successfully');
+        } else {
+            return redirect('/role/update_role/'.$id)->with('error', 'Role Update Failed');
+        }
+    }
+
+    public function delete_role($id)
+    {
+        if(DB::table('roles')->where('id', $id)->delete()) {
+            return redirect('/role')->with('success', 'Role Deleted Successfully');
+        } else {
+            return redirect('/role')->with('error', 'Role Delete Failed');
+        }
     }
 }

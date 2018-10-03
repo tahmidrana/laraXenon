@@ -5,7 +5,7 @@ Route::get('/', function () {
 });
 
 
-//Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@index');
 
 //menu
 Route::get('/menu', 'MenuController@index');
@@ -19,4 +19,7 @@ Route::post('/menu/update_menu/{id}', 'MenuController@save_updated_menu');
 Route::get('/role', 'RoleController@index');
 Route::get('/role/add_role', 'RoleController@add_role');
 Route::post('/role/add_role', 'RoleController@save_role');
-Route::get('/role/update_role/{$id}', 'RoleController@update_role');
+Route::get('/role/update_role/{id}', 'RoleController@update_role');
+Route::post('/role/update_role/{id}', 'RoleController@save_updated_role');
+Route::get('/role/delete_role/{id}', 'RoleController@delete_role');
+

@@ -18,7 +18,7 @@
                     <a href="#"><i class="fa-home"></i>Admin Console</a>
                 </li>
                 <li>
-                    <a href="{{ url('/menu') }}"><i class="fa-home"></i>Role</a>
+                    <a href="{{ url('/role') }}"><i class="fa-home"></i>Role</a>
                 </li>
                 <li class="active">
                     <strong>Add Role</strong>
@@ -31,25 +31,25 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4>Add New Role</h4>
+                    <h4>Update Role</h4>
                 </div>
                 <div class="panel-body">
-                    <form action="{{ url('role/add_role') }}" method="POST" role="form" id="form1" class="validate">
+                    <form action="{{ url('role/update_role/'.$role->id) }}" method="POST" role="form" id="form1" class="validate">
                         @csrf
                         <div class="form-group">
                             <label for="name">Title</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Ex: Role Title" required>
+                            <input type="text" name="name" id="name" class="form-control" value="{{ $role->name }}" placeholder="Ex: Role Title" required>
                         </div>
                         <div class="form-group">
                             <label for="slug">Slug</label>
-                            <input type="text" name="slug" id="slug" class="form-control" data-validate="required" placeholder="Ex: Slug" require>
-                        </div>                        
-                        <div class="form-group">
-                            <label for="permissions">Permissions</label>
-                            <textarea name="permissions" id="permissions" class="form-control" cols="30" rows="2" data-validate="maxlength[150]" placeholder="Max 150 Character"></textarea>
+                            <input type="text" name="slug" id="slug" class="form-control" value="{{ $role->slug }}" data-validate="required" placeholder="Ex: Slug" require>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="" id="" value="Save Role" class="btn btn-blue pull-right">
+                            <label for="permissions">Permissions</label>
+                            <textarea name="permissions" id="permissions" class="form-control" cols="30" rows="2" data-validate="maxlength[150]" placeholder="Max 150 Character">{{ $role->permissions }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" name="" id="" value="Update Role" class="btn btn-blue pull-right">
                         </div>
                     </form>
                 </div>
