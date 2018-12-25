@@ -80,7 +80,7 @@ class MenuController extends Controller
         $menu->menu_order = $request->menu_order ? $request->menu_order : 1;
         $menu->description = $request->description ? $request->description : NULL;
 
-        if($menu->save()) {
+        if(Menu::where('id', $id)->update($validateData)) {
             return redirect('/menu')->with('success', 'Menu updated Successfully');
         } else {
             return redirect('/menu/update_menu/'.$id)->with('error', 'Menu update Failed');

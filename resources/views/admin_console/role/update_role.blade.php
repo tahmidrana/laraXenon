@@ -15,10 +15,10 @@
         <div class="breadcrumb-env">
             <ol class="breadcrumb bc-1" >
                 <li>
-                    <a href="#"><i class="fa-home"></i>Admin Console</a>
+                    <a href="#"><i class="fa-cog"></i>Admin Console</a>
                 </li>
                 <li>
-                    <a href="{{ url('/role') }}"><i class="fa-home"></i>Role</a>
+                    <a href="{{ url('/role') }}">Role</a>
                 </li>
                 <li class="active">
                     <strong>Add Role</strong>
@@ -37,11 +37,11 @@
                     <form action="{{ url('role/update_role/'.$role->id) }}" method="POST" role="form" id="form1" class="validate">
                         @csrf
                         <div class="form-group">
-                            <label for="name">Title</label>
+                            <label for="name">Title <span style="color: red;">*</span></label>
                             <input type="text" name="name" id="name" class="form-control" value="{{ $role->name }}" placeholder="Ex: Role Title" required>
                         </div>
                         <div class="form-group">
-                            <label for="slug">Slug</label>
+                            <label for="slug">Slug <span style="color: red;">*</span></label>
                             <input type="text" name="slug" id="slug" class="form-control" value="{{ $role->slug }}" data-validate="required" placeholder="Ex: Slug" require>
                         </div>
                         <div class="form-group">

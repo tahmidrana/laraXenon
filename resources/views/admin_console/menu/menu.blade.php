@@ -14,7 +14,7 @@
         </div>
         <div class="breadcrumb-env">
             <ol class="breadcrumb bc-1" >                <li>
-                    <a href="#"><i class="fa-home"></i>Admin Console</a>
+                    <a href="#"><i class="fa-cog"></i>Admin Console</a>
                 </li>
                 <li class="active">
                     <strong>Menu</strong>
@@ -42,7 +42,7 @@
                 @foreach($menu_list as $menu)
                 <tr>
                     <td hidden="true">{{ $menu->id }}</td>
-                    <td>{{ $menu->title }}</td>
+                    <td style="{{ !$menu->parent_menu ? 'border-left:4px solid #e67e22' : '' }};">{{ $menu->title }}</td>
                     <td>{{ $menu->menu_url ? $menu->menu_url : 'N/A' }}</td>
                     <td>{{ $menu->parent_menu_title ? $menu->parent_menu_title : 'N/A' }}</td>
                     <td><a href="{{ url('menu/update_menu/'.$menu->id) }}" class="btn btn-blue btn-sm btn-icon">Edit</a> <a href="{{ url('menu/delete_menu/'.$menu->id) }}" onclick="return confirm_menu_delete()" class="btn btn-red btn-sm btn-icon">Delete</a> </td>

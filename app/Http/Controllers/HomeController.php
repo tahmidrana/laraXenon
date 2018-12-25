@@ -8,6 +8,22 @@ class HomeController extends Controller
 {
     public function index()
     {
+    	/*$action = app("request")->route()->getAction();
+    	$action_path = $action["controller"];
+    	$controller_method = class_basename($action_path);
+    	$controller_method = explode('@', $controller_method);
+    	$controller = $controller_method[0];
+    	$method = $controller_method[1];
+    	
+    	$controller_path = explode('@', $action_path)[0];
+
+    	echo "<pre>";
+    	print_r(get_class_methods($controller_path));*/
         return view('home.index');
+    }
+
+    public function yet_another_method()
+    {
+    	//
     }
 }

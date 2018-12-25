@@ -9,7 +9,7 @@ Dashboard
     <div class="page-title">
 
         <div class="title-env">
-            <h1 class="title">Charts</h1>
+            <h1 class="title">Home</h1>
             <p class="description">Data visualization widgets for your stats</p>
         </div>
 
@@ -28,7 +28,7 @@ Dashboard
         </div>
 
     </div>
-
+    <?php echo Route::currentRouteAction(); ?>
 @endsection
 
 

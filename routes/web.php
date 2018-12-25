@@ -23,3 +23,13 @@ Route::get('/role/update_role/{id}', 'RoleController@update_role');
 Route::post('/role/update_role/{id}', 'RoleController@save_updated_role');
 Route::get('/role/delete_role/{id}', 'RoleController@delete_role');
 
+Route::get('/role/{id}/config', 'RoleController@role_config');
+Route::post('/role/{id}/update_role_menu', 'RoleController@update_role_menu');
+Route::post('/role/{id}/update_role_permission', 'RoleController@update_role_permission');
+
+//Permission
+Route::resource('/permission', 'PermissionController');
+
+//Auth
+Route::get('/login', 'Auth\LoginController@get_login');
+Route::post('/login', 'Auth\LoginController@post_login');

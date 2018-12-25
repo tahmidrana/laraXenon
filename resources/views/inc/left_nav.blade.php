@@ -36,11 +36,11 @@
 
 
         </header>
+        <?php echo $my_nav_menu; ?>
 
-
-        <ul id="main-menu" class="main-menu">
-            <!-- add class "multiple-expanded" to allow multiple submenus to open -->
-            <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
+        <!-- <ul id="main-menu" class="main-menu">
+            add class "multiple-expanded" to allow multiple submenus to open
+            class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active"
             <li>
                 <a href="{{ url('/') }}">
                     <i class="fa fa-home"></i>
@@ -65,7 +65,7 @@
                     </li>
                 </ul>
             </li>
-        </ul>
+        </ul> -->
 
     </div>
 

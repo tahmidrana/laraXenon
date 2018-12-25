@@ -161,6 +161,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
         Tahmid\MyMenu\MyMenuServiceProvider::class,
+        App\Providers\ComposerServiceProvider::class,
 
     ],
 

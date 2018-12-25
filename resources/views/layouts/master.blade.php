@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/xenon-forms.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/xenon-components.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/xenon-skins.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/js/multiselect/css/multi-select.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
 
     <!--  Datatable -->
@@ -147,6 +148,7 @@
     <!-- Adding class "toggle-others" will keep only one menu item open at a time. -->
     <!-- Adding class "collapsed" collapse sidebar root elements and show only icons. -->
     @include('inc/left_nav')
+    
 
     <div class="main-content">
 
@@ -181,6 +183,7 @@
     <script src="{{ asset('assets/js/devexpress-web-14.1/js/dx.chartjs.js') }}"></script>
     <script src="{{ asset('assets/js/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-validate/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('assets/js/multiselect/js/jquery.multi-select.js') }}"></script>
 
     <!-- Datatable -->
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>

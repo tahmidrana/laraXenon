@@ -15,10 +15,10 @@
         <div class="breadcrumb-env">
             <ol class="breadcrumb bc-1" >
                 <li>
-                    <a href="#"><i class="fa-home"></i>Admin Console</a>
+                    <a href="#"><i class="fa-cog"></i>Admin Console</a>
                 </li>
                 <li>
-                    <a href="{{ url('/menu') }}"><i class="fa-home"></i>Menu</a>
+                    <a href="{{ url('/menu') }}">Menu</a>
                 </li>
                 <li class="active">
                     <strong>Update Menu</strong>
@@ -37,7 +37,7 @@
                     <form action="{{ url('menu/update_menu/'.$menu_data->id) }}" method="POST" role="form" id="form1" class="validate">
                         @csrf
                         <div class="form-group">
-                            <label for="title">Menu Title</label>
+                            <label for="title">Menu Title <span style="color: red;">*</span></label>
                             <input type="text" name="title" id="title" class="form-control" value="{{ $menu_data->title }}" data-validate="required" placeholder="Ex: Blog Post">
                         </div>
                         <div class="form-group">
@@ -54,7 +54,7 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="menu_url">Menu Order</label>
+                            <label for="menu_url">Menu Order <span style="color: red;">*</span></label>
                             <input type="number" name="menu_order" id="menu_order" class="form-control" value="{{ $menu_data->menu_order ? $menu_data->menu_order : '' }}"  data-validate="number,minlength[1]" placeholder="Ex: 1" data-validate="required">
                         </div>
                         <div class="form-group">

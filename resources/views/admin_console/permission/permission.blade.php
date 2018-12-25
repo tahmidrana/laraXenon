@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Admin Console | Role
+    Admin Console | Permissions
 @endsection
 
 @section('content')
@@ -9,8 +9,8 @@
 
     <div class="page-title">
         <div class="title-env">
-            <h1 class="title">Role</h1>
-            <p class="description">Add, Update & Delete User role</p>
+            <h1 class="title">Permissions</h1>
+            <p class="description">Add, Update & Delete role permissions</p>
         </div>
         <div class="breadcrumb-env">
             <ol class="breadcrumb bc-1" >
@@ -18,7 +18,7 @@
                     <a href="#"><i class="fa-cog"></i>Admin Console</a>
                 </li>
                 <li class="active">
-                    <strong>Role</strong>
+                    <strong>Permission</strong>
                 </li>
             </ol>
         </div>
@@ -26,23 +26,26 @@
     @include('error.error_msg')
     <div class="panel panel-default">
         <div class="panel-heading">
-            <a href="{{ url('/role/add_role') }}" class="btn btn-turquoise">Add Role</a>
+            <a href="{{ url('/permission/create') }}" class="btn btn-turquoise">Add Permission</a>
         </div>
         <div class="panel-body">
-            <table id="role_datatable" class="display compact hover row-border responsive no-wrap" style="width:100%">
+            <table id="perm_datatable" class="display compact hover row-border responsive no-wrap" style="width:100%">
                 <thead>
                 <tr>
                     <th hidden="true">Id</th>
-                    <th>Role Title</th>
+                    <th>Slug</th>
+                    <th>Description</th>
                     <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($roles as $role)
+                @foreach($permissions as $perm)
                 <tr>
-                    <td hidden="true">{{ $role->id }}</td>
-                    <td>{{ $role->name }}</td>
-                    <td><a href="{{ url('role/update_role/'.$role->id) }}" class="btn btn-blue btn-sm btn-icon">Edit</a> <a href="{{ url('role/delete_role/'.$role->id) }}" onclick="return confirm_role_delete()" class="btn btn-red btn-sm btn-icon">Delete</a> <a href='{{ url("role/{$role->id}/config") }}' class="btn btn-warning btn-sm btn-icon">Config</a></td>
+                    <td hidden="true">{{ $perm->id }}</td>
+                    <td>{{ $perm->slug }}</td>
+                    <td>{{ $perm->description }}</td>
+                    <td><a href='{{ url("permission/$perm->id/edit") }}' class="btn btn-blue btn-sm btn-icon">Edit</a> <a href="javascript:;" class="btn btn-red btn-sm btn-icon" onclick="$(this).find('#del_form').submit();">Delete <form id="del_form" action="{{ url('permission/'.$perm->id) }}" method="POST" onsubmit="return confirm_perm_delete()">@method('DELETE')
+                        @csrf</form></a> </td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -57,12 +60,12 @@
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#role_datatable').DataTable({
+            $('#perm_datatable').DataTable({
                 responsive: true,
                 "order": [[ 0, "desc" ]]
             });
         } );
-        function confirm_role_delete() {
+        function confirm_perm_delete() {
             if(confirm('Are you sure want to delete?')) {
                 return true;
             } else {

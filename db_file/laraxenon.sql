@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2018 at 01:47 PM
+-- Generation Time: Dec 25, 2018 at 01:50 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -28,7 +28,6 @@ SET time_zone = "+00:00";
 -- Table structure for table `activations`
 --
 
-DROP TABLE IF EXISTS `activations`;
 CREATE TABLE `activations` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
@@ -39,18 +38,12 @@ CREATE TABLE `activations` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Truncate table before insert `activations`
---
-
-TRUNCATE TABLE `activations`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `menus`
 --
 
-DROP TABLE IF EXISTS `menus`;
 CREATE TABLE `menus` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -64,21 +57,42 @@ CREATE TABLE `menus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Truncate table before insert `menus`
---
-
-TRUNCATE TABLE `menus`;
---
 -- Dumping data for table `menus`
 --
 
 INSERT INTO `menus` (`id`, `title`, `menu_url`, `menu_icon`, `description`, `menu_order`, `parent_menu`, `created_at`, `updated_at`) VALUES
-(1, 'Home', NULL, NULL, 'Home menu', 1, NULL, '2018-09-28 18:00:00', NULL),
-(2, 'Admin Console', NULL, NULL, 'admin console related all menu', 20, NULL, '2018-09-28 18:00:00', NULL),
+(1, 'Home', '/', 'fa-home', 'Home menu', 1, NULL, '2018-09-28 18:00:00', NULL),
+(2, 'Admin Console', NULL, 'fa-cog', 'admin console related all menu', 20, NULL, '2018-09-28 18:00:00', NULL),
 (3, 'Menu', '/menu', NULL, 'create, update & delete menu', 1, 2, '2018-09-28 18:00:00', NULL),
-(4, 'Blog', 'blog/all_post', NULL, NULL, 2, NULL, '2018-09-29 02:59:46', '2018-09-29 02:59:46'),
-(5, 'Add New Blog', NULL, NULL, NULL, 1, 4, '2018-09-29 03:06:05', '2018-09-29 03:06:05'),
-(6, 'Manage Posts', NULL, NULL, NULL, 2, 4, '2018-09-29 03:10:18', '2018-09-29 03:10:18');
+(8, 'Roles', '/role', NULL, NULL, 3, 2, '2018-12-23 10:48:35', '2018-12-25 02:58:40'),
+(9, 'Permission', '/permission', NULL, NULL, 2, 2, '2018-12-24 12:38:04', '2018-12-25 02:59:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu_role`
+--
+
+CREATE TABLE `menu_role` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `menu_id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `menu_role`
+--
+
+INSERT INTO `menu_role` (`id`, `menu_id`, `role_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, NULL, NULL),
+(2, 2, 2, NULL, NULL),
+(3, 3, 2, NULL, NULL),
+(4, 9, 2, NULL, NULL),
+(5, 8, 2, NULL, NULL),
+(6, 1, 3, NULL, NULL),
+(24, 1, 4, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -86,18 +100,12 @@ INSERT INTO `menus` (`id`, `title`, `menu_url`, `menu_icon`, `description`, `men
 -- Table structure for table `migrations`
 --
 
-DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Truncate table before insert `migrations`
---
-
-TRUNCATE TABLE `migrations`;
 --
 -- Dumping data for table `migrations`
 --
@@ -106,7 +114,60 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2018_09_29_064230_create_menus_table', 1),
 (2, '2018_09_29_075802_add_url_to_menus_table', 2),
 (3, '2018_10_02_084828_add_icon_to_menus_table', 3),
-(4, '2014_07_02_230147_migration_cartalyst_sentinel', 4);
+(4, '2014_07_02_230147_migration_cartalyst_sentinel', 4),
+(5, '2018_12_24_183120_create_permissions_table', 5),
+(6, '2018_12_25_080658_create_role_user_table', 6),
+(7, '2018_12_25_081140_create_permission_role_table', 7),
+(8, '2018_12_25_093830_create_menu_role_table', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `slug`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'post.add_post', 'add new blog post', '2018-12-24 13:04:23', '2018-12-24 13:44:01'),
+(2, 'post.update_post', 'update blog post', '2018-12-24 13:44:17', '2018-12-24 13:59:38'),
+(3, 'blog.delete_post', 'delete post', '2018-12-25 02:23:08', '2018-12-25 02:23:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permission_role`
+--
+
+CREATE TABLE `permission_role` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `permission_id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `permission_role`
+--
+
+INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 3, '2018-12-24 18:00:00', NULL),
+(2, 2, 3, '2018-12-24 18:00:00', NULL),
+(3, 1, 4, '2018-12-24 18:00:00', NULL),
+(4, 3, 4, '2018-12-24 18:00:00', NULL),
+(5, 2, 4, '2018-12-24 18:00:00', NULL),
+(10, 2, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -114,7 +175,6 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Table structure for table `persistences`
 --
 
-DROP TABLE IF EXISTS `persistences`;
 CREATE TABLE `persistences` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
@@ -123,18 +183,12 @@ CREATE TABLE `persistences` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Truncate table before insert `persistences`
---
-
-TRUNCATE TABLE `persistences`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `reminders`
 --
 
-DROP TABLE IF EXISTS `reminders`;
 CREATE TABLE `reminders` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
@@ -145,18 +199,12 @@ CREATE TABLE `reminders` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Truncate table before insert `reminders`
---
-
-TRUNCATE TABLE `reminders`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `roles`
 --
 
-DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles` (
   `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -167,47 +215,35 @@ CREATE TABLE `roles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Truncate table before insert `roles`
---
-
-TRUNCATE TABLE `roles`;
---
 -- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `slug`, `name`, `permissions`, `created_at`, `updated_at`) VALUES
 (1, 'super_admin', 'Super Admin', NULL, '2018-10-01 18:00:00', NULL),
 (2, 'admin', 'Admin', NULL, '2018-10-01 18:00:00', NULL),
-(3, 'Default', 'default', NULL, '2018-10-01 18:00:00', NULL),
-(4, 'subscriber', 'Subscriber', NULL, NULL, NULL),
-(5, 'xyz', 'Xyz', NULL, NULL, NULL);
+(3, 'default', 'Default', NULL, '2018-10-01 18:00:00', NULL),
+(4, 'subscriber', 'Subscriber', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `role_users`
+-- Table structure for table `role_user`
 --
 
-DROP TABLE IF EXISTS `role_users`;
-CREATE TABLE `role_users` (
-  `user_id` int(10) UNSIGNED NOT NULL,
+CREATE TABLE `role_user` (
+  `id` int(10) UNSIGNED NOT NULL,
   `role_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Truncate table before insert `role_users`
---
-
-TRUNCATE TABLE `role_users`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `throttle`
 --
 
-DROP TABLE IF EXISTS `throttle`;
 CREATE TABLE `throttle` (
   `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED DEFAULT NULL,
@@ -217,18 +253,12 @@ CREATE TABLE `throttle` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Truncate table before insert `throttle`
---
-
-TRUNCATE TABLE `throttle`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -244,10 +274,12 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Truncate table before insert `users`
+-- Dumping data for table `users`
 --
 
-TRUNCATE TABLE `users`;
+INSERT INTO `users` (`id`, `email`, `userid`, `password`, `permissions`, `last_login`, `first_name`, `last_name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'tahmidrana@gmail.com', 'tahmidrana', '$2y$10$1vAtRXDcpCdf8GuiRDjuVuh5aSPoezAlht684DKsvIpREkx8aeCEa', NULL, NULL, 'Tahmidur', 'Rahman', 0, '2018-12-24 18:00:00', NULL);
+
 --
 -- Indexes for dumped tables
 --
@@ -266,10 +298,32 @@ ALTER TABLE `menus`
   ADD KEY `menus_parent_menu_foreign` (`parent_menu`);
 
 --
+-- Indexes for table `menu_role`
+--
+ALTER TABLE `menu_role`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `menu_role_menu_id_foreign` (`menu_id`),
+  ADD KEY `menu_role_role_id_foreign` (`role_id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `permission_role`
+--
+ALTER TABLE `permission_role`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `permission_role_role_id_foreign` (`role_id`),
+  ADD KEY `permission_role_permission_id_foreign` (`permission_id`);
 
 --
 -- Indexes for table `persistences`
@@ -292,10 +346,12 @@ ALTER TABLE `roles`
   ADD UNIQUE KEY `roles_slug_unique` (`slug`);
 
 --
--- Indexes for table `role_users`
+-- Indexes for table `role_user`
 --
-ALTER TABLE `role_users`
-  ADD PRIMARY KEY (`user_id`,`role_id`);
+ALTER TABLE `role_user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `role_user_role_id_foreign` (`role_id`),
+  ADD KEY `role_user_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `throttle`
@@ -325,13 +381,31 @@ ALTER TABLE `activations`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `menu_role`
+--
+ALTER TABLE `menu_role`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `permission_role`
+--
+ALTER TABLE `permission_role`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `persistences`
@@ -349,7 +423,13 @@ ALTER TABLE `reminders`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `role_user`
+--
+ALTER TABLE `role_user`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `throttle`
@@ -361,7 +441,7 @@ ALTER TABLE `throttle`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -372,6 +452,27 @@ ALTER TABLE `users`
 --
 ALTER TABLE `menus`
   ADD CONSTRAINT `menus_parent_menu_foreign` FOREIGN KEY (`parent_menu`) REFERENCES `menus` (`id`);
+
+--
+-- Constraints for table `menu_role`
+--
+ALTER TABLE `menu_role`
+  ADD CONSTRAINT `menu_role_menu_id_foreign` FOREIGN KEY (`menu_id`) REFERENCES `menus` (`id`),
+  ADD CONSTRAINT `menu_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+
+--
+-- Constraints for table `permission_role`
+--
+ALTER TABLE `permission_role`
+  ADD CONSTRAINT `permission_role_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`),
+  ADD CONSTRAINT `permission_role_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`);
+
+--
+-- Constraints for table `role_user`
+--
+ALTER TABLE `role_user`
+  ADD CONSTRAINT `role_user_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
+  ADD CONSTRAINT `role_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
