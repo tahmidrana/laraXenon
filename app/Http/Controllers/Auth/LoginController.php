@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -56,15 +57,19 @@ class LoginController extends Controller
 
         //$user_res = DB::table('users')->where('userid', $username);
         
-        if(Auth::attempt(['email' => $username, 'password' => $password, 'status'=>1])) {
+        if(Auth::attempt(['username' => $username, 'password' => $password, 'status'=>1])) {
             // user exists
-            $resp['accessGranted'] = true;
-
-            /*if($user->status == 0) {
+            /*if(Auth::user()->status == 0) {
                 $resp['errors'] = '<strong>Invalid login!</strong><br />Your account has been deactivated.<br />';
+            } else {
+                $resp['accessGranted'] = true;
             }*/
 
+            $user = User::find(Auth::user()->id);
+            $user->last_login = date('Y-m-d H:i:s');
+            $user->save();
 
+            $resp['accessGranted'] = true;
         } else {
             $resp['errors'] = '<strong>Invalid login!</strong><br />Please enter valid userid and password.<br />';
         }

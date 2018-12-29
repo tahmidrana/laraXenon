@@ -28,6 +28,7 @@ Dashboard
         </div>
 
     </div>
+    <?php echo "<pre>"; print_r(Auth::user()); ?>
     @auth
         Authenticated
     @endauth
