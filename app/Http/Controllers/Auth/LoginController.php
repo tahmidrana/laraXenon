@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -28,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -53,17 +54,11 @@ class LoginController extends Controller
         $password = $request->passwd;
         //echo $password;
 
-        $user_res = DB::table('users')->where('userid', $username);
+        //$user_res = DB::table('users')->where('userid', $username);
         
-        if($user_res->count()) {
+        if(Auth::attempt(['email' => $username, 'password' => $password, 'status'=>1])) {
             // user exists
-            $user = $user_res->get();
-            if(Hash::check($password, $user->password)) {
-                //user credentials correct
-                $resp['accessGranted'] = true;
-            } else {
-                $resp['errors'] = '<strong>Invalid login!</strong><br />Please enter valid userid and password.<br />';
-            }
+            $resp['accessGranted'] = true;
 
             /*if($user->status == 0) {
                 $resp['errors'] = '<strong>Invalid login!</strong><br />Your account has been deactivated.<br />';
@@ -71,8 +66,15 @@ class LoginController extends Controller
 
 
         } else {
-            $resp['errors'] = '<strong>Invalid login!</strong><br />User not found.<br />';
+            $resp['errors'] = '<strong>Invalid login!</strong><br />Please enter valid userid and password.<br />';
         }
         echo json_encode($resp);
+    }
+
+    public function logout()
+    {
+        Auth::logout ();
+        //return Redirect::back();
+        return redirect('/login');
     }
 }

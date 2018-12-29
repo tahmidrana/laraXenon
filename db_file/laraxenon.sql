@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 25, 2018 at 01:50 PM
+-- Generation Time: Dec 29, 2018 at 05:45 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -269,6 +269,7 @@ CREATE TABLE `users` (
   `first_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT '1',
+  `remember_token` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -277,8 +278,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `userid`, `password`, `permissions`, `last_login`, `first_name`, `last_name`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'tahmidrana@gmail.com', 'tahmidrana', '$2y$10$1vAtRXDcpCdf8GuiRDjuVuh5aSPoezAlht684DKsvIpREkx8aeCEa', NULL, NULL, 'Tahmidur', 'Rahman', 0, '2018-12-24 18:00:00', NULL);
+INSERT INTO `users` (`id`, `email`, `userid`, `password`, `permissions`, `last_login`, `first_name`, `last_name`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'tahmidrana@gmail.com', 'tahmidrana', '$2y$10$1vAtRXDcpCdf8GuiRDjuVuh5aSPoezAlht684DKsvIpREkx8aeCEa', NULL, NULL, 'Tahmidur', 'Rahman', 1, 'rrjbjX4e6sjYKM3BWa511LopDwcZTNU6EVUhdvr1DMslmaiD2HWFoRL0OYxt', '2018-12-24 18:00:00', NULL);
 
 --
 -- Indexes for dumped tables

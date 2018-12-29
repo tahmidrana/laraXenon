@@ -318,9 +318,11 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="assets/images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
                 <span>
-								John Smith
-								<i class="fa-angle-down"></i>
-							</span>
+                    @if(Auth::user())
+					{{ Auth::user()->first_name.' '.Auth::user()->last_name }}
+                    @endif
+					<i class="fa-angle-down"></i>
+				</span>
             </a>
 
             <ul class="dropdown-menu user-profile-menu list-unstyled">
@@ -349,7 +351,7 @@
                     </a>
                 </li>
                 <li class="last">
-                    <a href="extra-lockscreen.html">
+                    <a href="{{ url('/logout') }}">
                         <i class="fa-lock"></i>
                         Logout
                     </a>

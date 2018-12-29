@@ -28,7 +28,14 @@ Dashboard
         </div>
 
     </div>
-    <?php echo Route::currentRouteAction(); ?>
+    @auth
+        Authenticated
+    @endauth
+
+    @guest
+    The user is not authenticated...
+    @endguest
+    
 @endsection
 
 
