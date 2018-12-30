@@ -14,6 +14,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
+        session(['sub_menu' => 'permission']);
         $permissions = Permission::all();
         return view('admin_console.permission.permission', ['permissions'=>$permissions]);
     }

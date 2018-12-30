@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2018 at 05:45 PM
+-- Generation Time: Dec 30, 2018 at 07:33 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -64,8 +64,9 @@ INSERT INTO `menus` (`id`, `title`, `menu_url`, `menu_icon`, `description`, `men
 (1, 'Home', '/', 'fa-home', 'Home menu', 1, NULL, '2018-09-28 18:00:00', NULL),
 (2, 'Admin Console', NULL, 'fa-cog', 'admin console related all menu', 20, NULL, '2018-09-28 18:00:00', NULL),
 (3, 'Menu', '/menu', NULL, 'create, update & delete menu', 1, 2, '2018-09-28 18:00:00', NULL),
-(8, 'Roles', '/role', NULL, NULL, 3, 2, '2018-12-23 10:48:35', '2018-12-25 02:58:40'),
-(9, 'Permission', '/permission', NULL, NULL, 2, 2, '2018-12-24 12:38:04', '2018-12-25 02:59:00');
+(8, 'Roles', '/role', NULL, NULL, 4, 2, '2018-12-23 10:48:35', '2018-12-30 11:49:57'),
+(9, 'Permission', '/permission', NULL, NULL, 2, 2, '2018-12-24 12:38:04', '2018-12-25 02:59:00'),
+(10, 'Users', '/users', NULL, 'internal user or staff management', 3, 2, '2018-12-30 11:49:44', '2018-12-30 11:49:44');
 
 -- --------------------------------------------------------
 
@@ -167,7 +168,8 @@ INSERT INTO `permission_role` (`id`, `permission_id`, `role_id`, `created_at`, `
 (3, 1, 4, '2018-12-24 18:00:00', NULL),
 (4, 3, 4, '2018-12-24 18:00:00', NULL),
 (5, 2, 4, '2018-12-24 18:00:00', NULL),
-(10, 2, 2, NULL, NULL);
+(11, 1, 2, NULL, NULL),
+(12, 3, 2, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -238,6 +240,13 @@ CREATE TABLE `role_user` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `role_user`
+--
+
+INSERT INTO `role_user` (`id`, `role_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, '2018-12-30 18:00:00', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -262,7 +271,7 @@ CREATE TABLE `throttle` (
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `userid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `permissions` text COLLATE utf8mb4_unicode_ci,
   `last_login` timestamp NULL DEFAULT NULL,
@@ -278,8 +287,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `userid`, `password`, `permissions`, `last_login`, `first_name`, `last_name`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'tahmidrana@gmail.com', 'tahmidrana', '$2y$10$1vAtRXDcpCdf8GuiRDjuVuh5aSPoezAlht684DKsvIpREkx8aeCEa', NULL, NULL, 'Tahmidur', 'Rahman', 1, 'rrjbjX4e6sjYKM3BWa511LopDwcZTNU6EVUhdvr1DMslmaiD2HWFoRL0OYxt', '2018-12-24 18:00:00', NULL);
+INSERT INTO `users` (`id`, `email`, `username`, `password`, `permissions`, `last_login`, `first_name`, `last_name`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'tahmidrana@gmail.com', 'tahmidrana', '$2y$10$1vAtRXDcpCdf8GuiRDjuVuh5aSPoezAlht684DKsvIpREkx8aeCEa', NULL, '2018-12-30 11:47:29', 'Tahmidur', 'Rahman', 1, 'p2xzVn7CnzBAOUfFfg8pVgQOlyyUhzMEs48jZXxUyiZtYIUAaa4eLafLG43H', '2018-12-24 18:00:00', '2018-12-30 11:47:29'),
+(2, 'touhidurrahman@gmail.com', 'touhid', '$2y$10$1vAtRXDcpCdf8GuiRDjuVuh5aSPoezAlht684DKsvIpREkx8aeCEa', NULL, '2018-12-29 11:11:31', 'Touhidur', 'Rahman', 1, 'cYkFhEh1yx9bcLlgjf8bQnwBqVsot8muJXFzvHZdStdoZYkPxRHhTHtygGxE', '2018-12-28 18:00:00', '2018-12-29 11:11:31');
 
 --
 -- Indexes for dumped tables
@@ -366,7 +376,8 @@ ALTER TABLE `throttle`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -382,7 +393,7 @@ ALTER TABLE `activations`
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `menu_role`
@@ -406,7 +417,7 @@ ALTER TABLE `permissions`
 -- AUTO_INCREMENT for table `permission_role`
 --
 ALTER TABLE `permission_role`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `persistences`
@@ -430,7 +441,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `role_user`
 --
 ALTER TABLE `role_user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `throttle`
@@ -442,7 +453,7 @@ ALTER TABLE `throttle`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

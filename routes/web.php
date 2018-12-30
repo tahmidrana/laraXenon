@@ -29,6 +29,9 @@ Route::group(['middleware'=> 'auth'], function(){
 
 	//Permission
 	Route::resource('/permission', 'PermissionController');
+
+	//Users
+	Route::get('/users', 'UserController@index');
 });
 
 //Auth

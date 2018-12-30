@@ -9,8 +9,15 @@ use Exception;
 
 class MenuController extends Controller
 {
+    public function __construct() 
+    {
+        session([]);
+        session(['main_menu' => 'admin console']);
+    }
+
     public function index()
     {
+        session(['sub_menu' => 'menu']);
         $menu_list = DB::table('menus AS a')
                         ->leftJoin('menus AS b', 'a.parent_menu', '=', 'b.id')
                         ->select('a.*', 'b.title AS parent_menu_title')

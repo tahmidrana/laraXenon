@@ -53,7 +53,11 @@
                     <div class="user-details">
 
                         <h3>
-                            <a href="extra-profile.html">John Smith</a>
+                            <a href="extra-profile.html">
+                                @if(Auth::user())
+                                {{ Auth::user()->first_name.' '.Auth::user()->last_name }}
+                                @endif
+                            </a>
 
                             <!-- Available statuses: is-online, is-idle, is-busy and is-offline -->
                             <span class="user-status is-online"></span>

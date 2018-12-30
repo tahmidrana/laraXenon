@@ -19,11 +19,11 @@ class MyMenuRepository {
 
         foreach($menu as $val) {
         	$menu_res .= '<li class="';
-        	/*if(strtolower($val->title) == strtolower($request->session->get('main_menu'))) {
+        	if(strtolower($val->title) == strtolower(session('main_menu'))) {
 				$menu_res .= 'active active opened';
 			} else {
 				$menu_res .= '';
-			}*/
+			}
 
 			if(is_null($val->parent_menu) && (is_null($val->menu_url) || $val->menu_url=='' || $val->menu_url=='#')){
                 $menu_res .= ' has-sub';
@@ -48,11 +48,11 @@ class MyMenuRepository {
 	        $menu_res .= '<ul>';
 	        foreach ($sub as $s) {
 				$menu_res .= '<li class="';
-				/*if(strtolower($s->title) == strtolower($this->CI->session->userdata('sub_menu'))) {
+				if(strtolower($s->title) == strtolower(session('sub_menu'))) {
 					$menu_res .= 'active';
 				} else {
 					$menu_res .= '';
-				}*/
+				}
 				$menu_res .= '"><a href="'.$s->menu_url.'"><span class="title">'.$s->title.'</span></a></li>';
 			}
 			$menu_res .= '</ul>';

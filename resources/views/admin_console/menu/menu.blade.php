@@ -5,7 +5,9 @@
 @endsection
 
 @section('content')
-    <?php //dd($menu_list) ?>
+    <?php //dd($menu_list)
+        
+    ?>
 
     <div class="page-title">
         <div class="title-env">
