@@ -28,14 +28,12 @@ Dashboard
         </div>
 
     </div>
-    <?php echo "<pre>"; print_r(Auth::user()); ?>
-    @auth
-        Authenticated
-    @endauth
-
-    @guest
-    The user is not authenticated...
-    @endguest
+    <?php
+        $user = Auth::user();
+        //echo $user->hasRole('admin') ? 'Yes' : 'No';
+        echo $user->hasPermissionTo('post.add_post') ? 'Yes' : 'No';
+        echo $user->can(App\Models\Permission::find(1)) ? 'Yes' : 'No';
+    ?>
     
 @endsection
 

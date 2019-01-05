@@ -7,10 +7,11 @@ use App\Models\Role;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Permissions\HasPermissionTrait;
 
 class User extends Authenticatable
 {
-	use Notifiable;
+	use Notifiable, HasPermissionTrait;
 	
 	protected $fillable = [
         'first_name', 'last_name', 'email', 'username', 'password',
@@ -25,8 +26,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function roles()
+    public function isAdmin()
     {
-    	return $this->belongsToMany(Role::class);
+    	//
     }
+
 }

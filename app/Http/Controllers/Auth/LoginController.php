@@ -58,16 +58,15 @@ class LoginController extends Controller
         //$user_res = DB::table('users')->where('userid', $username);
         
         if(Auth::attempt(['username' => $username, 'password' => $password, 'status'=>1])) {
-            // user exists
-            /*if(Auth::user()->status == 0) {
-                $resp['errors'] = '<strong>Invalid login!</strong><br />Your account has been deactivated.<br />';
-            } else {
-                $resp['accessGranted'] = true;
-            }*/
-
             $user = User::find(Auth::user()->id);
             $user->last_login = date('Y-m-d H:i:s');
             $user->save();
+
+            /*$user_data = [
+                'name' => Auth::user()->first_name.' '.Auth::user()->last_name,
+                'user_id' => Auth::user()->id, 
+                'username' => Auth::user()->username 
+            ];*/
 
             $resp['accessGranted'] = true;
         } else {
@@ -78,7 +77,7 @@ class LoginController extends Controller
 
     public function logout()
     {
-        Auth::logout ();
+        Auth::logout();
         //return Redirect::back();
         return redirect('/login');
     }

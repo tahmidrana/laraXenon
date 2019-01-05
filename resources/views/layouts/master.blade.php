@@ -63,7 +63,9 @@
                             <span class="user-status is-online"></span>
                         </h3>
 
-                        <p class="user-title">Web Developer</p>
+                        <p class="user-title">
+                            {{ Auth::user()->roles[0]->name }}
+                        </p>
 
                         <div class="user-links">
                             <a href="extra-profile.html" class="btn btn-primary">Edit Profile</a>

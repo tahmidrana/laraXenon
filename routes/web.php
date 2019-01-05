@@ -32,9 +32,11 @@ Route::group(['middleware'=> 'auth'], function(){
 
 	//Users
 	Route::get('/users', 'UserController@index');
+
+	Route::get('/logout', 'Auth\LoginController@logout');
 });
 
 //Auth
 Route::get('/login', 'Auth\LoginController@get_login')->name('login');
 Route::post('/login', 'Auth\LoginController@post_login');
-Route::get('/logout', 'Auth\LoginController@logout');
+
