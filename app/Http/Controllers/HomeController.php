@@ -14,7 +14,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        session(['sub_menu' => '']);
+        session(['main_menu' => 'home', 'sub_menu' => '']);
     	/*$action = app("request")->route()->getAction();
     	$action_path = $action["controller"];
     	$controller_method = class_basename($action_path);

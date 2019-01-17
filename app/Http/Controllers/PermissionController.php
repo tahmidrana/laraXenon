@@ -14,7 +14,7 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        session(['sub_menu' => 'permission']);
+        session(['main_menu' => 'admin console', 'sub_menu' => 'permission']);
         $permissions = Permission::all();
         return view('admin_console.permission.permission', ['permissions'=>$permissions]);
     }
@@ -26,6 +26,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
+        session(['main_menu' => 'admin console', 'sub_menu' => 'permission']);
         return view('admin_console.permission.add_permission');
     }
 
@@ -71,6 +72,7 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
+        session(['main_menu' => 'admin console', 'sub_menu' => 'permission']);
         return view('admin_console.permission.update_permission', compact('permission'));
     }
 

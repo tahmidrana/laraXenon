@@ -253,44 +253,44 @@
         <!-- Added in v1.2 -->
         <li class="dropdown hover-line language-switcher">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="assets/images/flags/flag-uk.png" alt="flag-uk" />
+                <img src="{{ url('assets/images/flags/flag-uk.png') }}" alt="flag-uk" />
                 English
             </a>
 
             <ul class="dropdown-menu languages">
                 <li>
                     <a href="#">
-                        <img src="assets/images/flags/flag-al.png" alt="flag-al" />
+                        <img src="{{ url('assets/images/flags/flag-al.png') }}" alt="flag-al" />
                         Shqip
                     </a>
                 </li>
                 <li class="active">
                     <a href="#">
-                        <img src="assets/images/flags/flag-uk.png" alt="flag-uk" />
+                        <img src="{{ url('assets/images/flags/flag-uk.png') }}" alt="flag-uk" />
                         English
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="assets/images/flags/flag-de.png" alt="flag-de" />
+                        <img src="{{ url('assets/images/flags/flag-de.png') }}" alt="flag-de" />
                         Deutsch
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="assets/images/flags/flag-fr.png" alt="flag-fr" />
+                        <img src="{{ url('assets/images/flags/flag-fr.png') }}" alt="flag-fr" />
                         Fran&ccedil;ais
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="assets/images/flags/flag-br.png" alt="flag-br" />
+                        <img src="{{ url('assets/images/flags/flag-br.png') }}" alt="flag-br" />
                         Portugu&ecirc;s
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <img src="assets/images/flags/flag-es.png" alt="flag-es" />
+                        <img src="{{ url('assets/images/flags/flag-es.png') }}" alt="flag-es" />
                         Espa&ntilde;ol
                     </a>
                 </li>
@@ -316,7 +316,7 @@
 
         <li class="dropdown user-profile">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="assets/images/user-4.png" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
+                <img src="{{ url('assets/images/user-4.png') }}" alt="user-image" class="img-circle img-inline userpic-32" width="28" />
                 <span>
                     @if(Auth::user())
 					{{ Auth::user()->first_name.' '.Auth::user()->last_name }}

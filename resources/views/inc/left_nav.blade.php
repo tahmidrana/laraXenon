@@ -7,11 +7,11 @@
             <!-- logo -->
             <div class="logo">
                 <a href="{{ url('/') }}" class="logo-expanded">
-                    <img src="assets/images/logo@2x.png" width="80" alt=""/>
+                    <img src="{{ asset('assets/images/logo@2x.png') }}" width="80" alt=""/>
                 </a>
 
                 <a href="{{ url('/') }}" class="logo-collapsed">
-                    <img src="assets/images/logo-collapsed@2x.png" width="40" alt=""/>
+                    <img src="{{ asset('assets/images/logo-collapsed@2x.png') }}" width="40" alt=""/>
                 </a>
             </div>
 

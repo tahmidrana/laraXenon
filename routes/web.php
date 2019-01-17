@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Http\Request;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,4 +41,8 @@ Route::group(['middleware'=> 'auth'], function(){
 //Auth
 Route::get('/login', 'Auth\LoginController@get_login')->name('login');
 Route::post('/login', 'Auth\LoginController@post_login');
+
+Route::get('/sess', function(Request $request) {
+	dd($request->session());
+});
 

@@ -9,11 +9,13 @@ use App\Models\Role;
 class RoleController extends Controller
 {
     public function index() {
+        session(['main_menu' => 'admin console', 'sub_menu' => 'roles']);
         $roles = DB::Table('roles')->where('slug', '!=', 'super_admin')->get();
         return view('admin_console.role.role', ['roles'=>$roles]);
     }
 
     public function add_role() {
+        session(['main_menu' => 'admin console', 'sub_menu' => 'roles']);
         $role_list = DB::table('roles')->get();
         return view('admin_console.role.add_role', ['role_list'=> $role_list]);
     }
@@ -39,6 +41,7 @@ class RoleController extends Controller
     }
 
     public function update_role($id) {
+        session(['main_menu' => 'admin console', 'sub_menu' => 'roles']);
         $role = DB::table('roles')->where('id', $id)->first();
         return view('admin_console.role.update_role', ['role'=> $role]);
     }
@@ -70,6 +73,7 @@ class RoleController extends Controller
 
     public function role_config($id)
     {
+        session(['main_menu' => 'admin console', 'sub_menu' => 'roles']);
         /*$menu_list = DB::table('menus AS a')
                     ->leftJoin('menu_role AS b', function($lJoin) use ($id){
                         $lJoin->on('a.id', '=', 'b.menu_id')
