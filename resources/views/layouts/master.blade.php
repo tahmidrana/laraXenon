@@ -26,6 +26,17 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 
     <script src="{{ asset('assets/js/jquery-1.11.1.min.js') }}"></script>
+    <style media="screen">
+        .sidebar-menu .logo-env {
+            padding: 24px 40px;
+            border-bottom: 1px solid #313437;
+        }
+    </style>
+    <style>
+        .sidebar-menu {
+            width: 280px;
+        }
+    </style>
 </head>
 <body class="page-body">
 
