@@ -58,6 +58,10 @@
                             <input type="number" name="menu_order" id="menu_order" value="{{ old('menu_order') }}" class="form-control" data-validate="number,minlength[1]" placeholder="Ex: 1" data-validate="required">
                         </div>
                         <div class="form-group">
+                            <label for="menu_url">Menu Icon</label>
+                            <input type="text" name="menu_icon" id="menu_icon" value="{{ old('menu_icon') }}" class="form-control" placeholder="Ex: fa-book">
+                        </div>
+                        <div class="form-group">
                             <label for="description">Description</label>
                             <textarea name="description" id="description" class="form-control" cols="30" rows="2" data-validate="maxlength[150]" placeholder="Max 150 Character">{{ old('description') }}</textarea>
                         </div>

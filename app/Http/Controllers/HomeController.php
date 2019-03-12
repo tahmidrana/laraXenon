@@ -29,8 +29,4 @@ class HomeController extends Controller
         return view('home.index');
     }
 
-    public function yet_another_method()
-    {
-    	//
-    }
 }

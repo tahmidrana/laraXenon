@@ -36,36 +36,31 @@
 
 
         </header>
-        <?php echo $my_nav_menu; ?>
-
-        <!-- <ul id="main-menu" class="main-menu">
-            add class "multiple-expanded" to allow multiple submenus to open
-            class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active"
-            <li>
-                <a href="{{ url('/') }}">
-                    <i class="fa fa-home"></i>
-                    <span class="title">Dashboard</span>
+        
+        <?php //echo $my_nav_menu; ?>
+        <?php $main_menus = \App\Models\Menu::where('parent_menu', '=', NULL)->get(); ?>
+        <ul id="main-menu" class="main-menu">
+        @foreach($main_menus as $menu)
+            <li class="{{ strtolower($menu->title) == strtolower(session('main_menu')) ? 'active opened active' : '' }}">
+                <a href="{{ $menu->menu_url ? $menu->menu_url : '#' }}">
+                    <i class="{{ $menu->menu_icon }}"></i>
+                    <span class="title">{{ $menu->title }}</span>
                 </a>
-            </li>
-            <li class="active opened active">
-                <a href="#">
-                    <i class="linecons-cog"></i>
-                    <span class="title">Admin Console</span>
-                </a>
+                <?php $sub_menu1 = \App\Models\Menu::where('parent_menu', '=', $menu->id); ?>
+                @if($sub_menu1->count())
                 <ul>
-                    <li class="active">
-                        <a href="{{ url('/menu') }}">
-                            <span class="title">Menu</span>
-                        </a>
-                    </li>
-                    <li class="">
-                        <a href="{{ url('/role') }}">
-                            <span class="title">Role</span>
-                        </a>
-                    </li>
+                    @foreach($sub_menu1->get() as $sub1)
+                        <li class="{{ strtolower($sub1->title) == strtolower(session('sub_menu')) ? 'active' : '' }}">
+                            <a href="{{ $sub1->menu_url }}">
+                                <span class="title">{{ $sub1->title }}</span>
+                            </a>
+                        </li>
+                    @endforeach
                 </ul>
+                @endif
             </li>
-        </ul> -->
+        @endforeach
+        </ul>
 
     </div>
 

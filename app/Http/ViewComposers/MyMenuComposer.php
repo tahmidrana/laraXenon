@@ -9,13 +9,13 @@ class MyMenuComposer {
 
     public function __construct(MyMenuRepository $myMenu) {
         //$this->my_nav_menu = $myMenu->get_menu();
-        $this->my_nav_menu = $myMenu->getMyMenu();
+        //$this->my_nav_menu = $myMenu->getMyMenu();
     }
 
     public function compose(View $view) {
         /*View::composer('*', function($view){
             $view->with('my_nav_menu', $this->my_nav_menu);
         });*/
-        $view->with('my_nav_menu', $this->my_nav_menu);
+        //$view->with('my_nav_menu', $this->my_nav_menu);
     }
 }

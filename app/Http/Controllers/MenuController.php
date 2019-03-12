@@ -43,6 +43,7 @@ class MenuController extends Controller
         $menu->menu_url = $request->menu_url ? $request->menu_url : NULL;
         $menu->parent_menu = $request->parent_menu ? $request->parent_menu : NULL;
         $menu->menu_order = $request->menu_order ? $request->menu_order : 1;
+        $menu->menu_icon = $request->menu_icon ? $request->menu_icon : NULL;
         $menu->description = $request->description ? $request->description : NULL;
 
         if($menu->save()) {
@@ -79,14 +80,15 @@ class MenuController extends Controller
             'description'=> 'max:150'
         ]);
 
-        $menu = new Menu;
+        $menu = Menu::find($id);
         $menu->title = $request->title;
         $menu->menu_url = $request->menu_url ? $request->menu_url : NULL;
         $menu->parent_menu = $request->parent_menu ? $request->parent_menu : NULL;
         $menu->menu_order = $request->menu_order ? $request->menu_order : 1;
+        $menu->menu_icon = $request->menu_icon ? $request->menu_icon : NULL;
         $menu->description = $request->description ? $request->description : NULL;
 
-        if(Menu::where('id', $id)->update($validateData)) {
+        if($menu->save()) {
             return redirect('/menu')->with('success', 'Menu updated Successfully');
         } else {
             return redirect('/menu/update_menu/'.$id)->with('error', 'Menu update Failed');
