@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 05, 2019 at 05:59 PM
+-- Generation Time: Apr 20, 2019 at 07:25 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -288,7 +288,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `username`, `password`, `permissions`, `last_login`, `first_name`, `last_name`, `status`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'tahmidrana@gmail.com', 'tahmidrana', '$2y$10$1vAtRXDcpCdf8GuiRDjuVuh5aSPoezAlht684DKsvIpREkx8aeCEa', NULL, '2019-01-05 01:04:48', 'Tahmidur', 'Rahman', 1, '8VE9DFK3QHr5XAA9DICnohFLBIXZDHVikkLlrR2H42uFQ3VTKfDWWnAnGvBR', '2018-12-24 18:00:00', '2019-01-05 01:04:48'),
+(1, 'tahmidrana@gmail.com', 'tahmidrana', '$2y$10$1vAtRXDcpCdf8GuiRDjuVuh5aSPoezAlht684DKsvIpREkx8aeCEa', NULL, '2019-03-23 07:25:21', 'Tahmidur', 'Rahman', 1, '8VE9DFK3QHr5XAA9DICnohFLBIXZDHVikkLlrR2H42uFQ3VTKfDWWnAnGvBR', '2018-12-24 18:00:00', '2019-03-23 07:25:21'),
 (2, 'touhidurrahman@gmail.com', 'touhid', '$2y$10$1vAtRXDcpCdf8GuiRDjuVuh5aSPoezAlht684DKsvIpREkx8aeCEa', NULL, '2018-12-29 11:11:31', 'Touhidur', 'Rahman', 1, 'cYkFhEh1yx9bcLlgjf8bQnwBqVsot8muJXFzvHZdStdoZYkPxRHhTHtygGxE', '2018-12-28 18:00:00', '2018-12-29 11:11:31');
 
 --

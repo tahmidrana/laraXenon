@@ -6,6 +6,7 @@
 
 @section('content')
 
+<?php //dd($role_data->menus);  ?>
 
 <div class="page-title">
     <div class="title-env">

@@ -74,17 +74,13 @@ class RoleController extends Controller
     public function role_config($id)
     {
         session(['main_menu' => 'admin console', 'sub_menu' => 'roles']);
-        /*$menu_list = DB::table('menus AS a')
-                    ->leftJoin('menu_role AS b', function($lJoin) use ($id){
-                        $lJoin->on('a.id', '=', 'b.menu_id')
-                            ->where('b.role_id', '=', $id);
-                    })
-                    ->select('a.*, b.role_id')
-                    ->get();*/
+
+        $role = Role::findOrFail($id);
+        //$role->load('menus');
         $menu_list = DB::select("SELECT a.*, b.role_id FROM menus a LEFT JOIN menu_role b ON a.id=b.menu_id AND b.role_id=?", [$id]);
         $perm_list = DB::select("SELECT a.*, b.role_id FROM permissions a LEFT JOIN permission_role b ON a.id=b.permission_id AND b.role_id=?", [$id]);
         $data = [
-            'role_data' => Role::findOrFail($id),
+            'role_data' => $role,
             'menu_list' => $menu_list,
             'perm_list' => $perm_list
         ];
