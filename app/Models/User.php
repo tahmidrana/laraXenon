@@ -28,7 +28,11 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-    	//
+    	return $this->hasRole('admin');
+    }
+
+    public function getFullName() {
+        return isset($this->first_name) ? $this->first_name.' '.$this->last_name : $this->username;
     }
 
 }
