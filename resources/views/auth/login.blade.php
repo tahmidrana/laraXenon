@@ -8,7 +8,7 @@
 	<meta name="description" content="Xenon Boostrap Admin Panel" />
 	<meta name="author" content="" />
 
-	<title>Xenon - Login Light</title>
+	<title>Xenon - Login</title>
 
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Arimo:400,700,400italic">
 	<link rel="stylesheet" href="{{ asset('assets/css/fonts/linecons/css/linecons.css') }}">
@@ -184,8 +184,8 @@
 						<a href="#"></a>
 	
 						<div class="info-links">
-							<a href="#">ToS</a> -
-							<a href="#">Privacy Policy</a>
+							<a href="#">{{ date('Y') }}</a> - All rights reserved. Designed & Developed by
+							<a href="http://appinionbd.com">Appinion BD Ltd</a>
 						</div>
 	
 					</div>

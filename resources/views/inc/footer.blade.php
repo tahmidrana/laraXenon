@@ -4,9 +4,9 @@
 
         <!-- Add your copyright text here -->
         <div class="footer-text">
-            &copy; 2014
+            &copy; {{ date('Y') }}
             <strong>Xenon</strong>
-            theme by <a href="http://laborator.co" target="_blank">Laborator</a> - <a href="http://themeforest.net/item/xenon-bootstrap-admin-theme/9059661?ref=Laborator" target="_blank">Purchase for only <strong>23$</strong></a>
+            Developed by <b><a href="http://appinionbd.com">Appinion BD Ltd</a></b>
         </div>
 
 
