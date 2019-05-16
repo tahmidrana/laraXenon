@@ -64,10 +64,10 @@ Dashboard
         </div>
     </div>
     <?php
-        $user = Auth::user();
+        //$user = Auth::user();
         //echo $user->hasRole('admin') ? 'Yes' : 'No';
-        echo $user->hasPermissionTo('post.add_post') ? 'Yes' : 'No';
-        echo $user->can(App\Models\Permission::find(1)) ? 'Yes' : 'No';
+        //echo $user->hasPermissionTo('post.add_post') ? 'Yes' : 'No';
+        //echo $user->can(App\Models\Permission::find(1)) ? 'Yes' : 'No';
     ?>
     
 @endsection
