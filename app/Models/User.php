@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Role;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +12,7 @@ use App\Permissions\HasPermissionTrait;
 
 class User extends Authenticatable
 {
-	use Notifiable, HasPermissionTrait;
+	use Notifiable, HasApiTokens, HasPermissionTrait;
 	
 	protected $fillable = [
         'first_name', 'last_name', 'email', 'username', 'password',
@@ -33,6 +34,10 @@ class User extends Authenticatable
 
     public function getFullName() {
         return isset($this->first_name) ? $this->first_name.' '.$this->last_name : $this->username;
+    }
+
+    public function findForPassport($username) {
+        return $this->where('username', $username)->first();
     }
 
 }
