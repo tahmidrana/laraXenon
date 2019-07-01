@@ -32,8 +32,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/",
-            "Tahmid\\MyMenu\\": "package/mymenu/src"
+            "Tests\\": "tests/"
         }
     },
     "extra": {
