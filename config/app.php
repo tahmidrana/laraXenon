@@ -160,7 +160,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Cartalyst\Sentinel\Laravel\SentinelServiceProvider::class,
-        Tahmid\MyMenu\MyMenuServiceProvider::class,
+        //Tahmid\MyMenu\MyMenuServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         App\Providers\PermissionsServiceProvider::class,
 
